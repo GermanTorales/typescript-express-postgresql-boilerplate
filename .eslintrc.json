@@ -1,0 +1,29 @@
+{
+  "env": {
+    "es6": true,
+    "node": true,
+    "jest": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "prettier",
+    "plugin:eslint/recommended",
+    "plugin:prettier/recommended",
+    "plugin:security/recommended",
+    "plugin:jest/recommended"
+  ],
+  "plugins": ["prettier", "jest", "security"],
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  },
+  "rules": {
+    "no-console": "error",
+    "func-names": "off",
+    "no-underscore-dangle": "off",
+    "consistent-return": "off",
+    "jest/expect-expect": "off",
+    "security/detect-object-injection": "off",
+    "@typescript-eslint/no-this-alias": 0
+  }
+}
