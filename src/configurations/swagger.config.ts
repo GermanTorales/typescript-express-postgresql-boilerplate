@@ -8,15 +8,15 @@ const swaggerConfig = {
     description: 'This is a node express boilerplate in typescript',
     license: {
       name: 'MIT',
-      url: '',
-    },
+      url: ''
+    }
   },
   servers: [
     {
       url: `http://localhost:${envVars.port}/v1`,
-      description: 'Development Server',
-    },
-  ],
+      description: 'Development Server'
+    }
+  ]
 };
 
 export default swaggerConfig;

@@ -21,15 +21,13 @@ const logger = winston.createLogger({
     enumerateErrorFormat(),
     envVars.env === 'local' ? winston.format.colorize() : winston.format.uncolorize(),
     winston.format.splat(),
-    winston.format.printf(
-      (info: LoggingInfo) => `${format(new Date(), 'dd/MM/yyyy HH:mm:ss')} | ${info.level} | ${info.message}`
-    )
+    winston.format.printf((info: LoggingInfo) => `${format(new Date(), 'dd/MM/yyyy HH:mm:ss')} | ${info.level} | ${info.message}`)
   ),
   transports: [
     new winston.transports.Console({
-      stderrLevels: ['error'],
-    }),
-  ],
+      stderrLevels: ['error']
+    })
+  ]
 });
 
 export default logger;

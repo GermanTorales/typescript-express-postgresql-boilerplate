@@ -1,11 +1,9 @@
 import {} from '../services';
 
 export class AuthController {
-  constructor() {
-    this.userService = new UserService();
-  }
+  constructor() {}
 
-  async handleLogin(req: Request, res: Response) {}
+  async handleLogin() {}
 
-  async handleRegister(req: Request, res: Response) {}
+  async handleRegister() {}
 }

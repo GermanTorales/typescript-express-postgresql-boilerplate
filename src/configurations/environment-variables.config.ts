@@ -5,7 +5,7 @@ const envVarsSchema = Joi.object()
   .keys({
     NODE_ENV: Joi.string().valid('production', 'development', 'local', 'test').required(),
     PORT: Joi.number().default(3000),
-    HOST: Joi.string().default('localhost'),
+    HOST: Joi.string().default('localhost')
   })
   .unknown();
 
@@ -18,7 +18,7 @@ if (error) {
 const envVars = {
   env: envVarsValues.NODE_ENV,
   port: parseInt(envVarsValues.PORT, 10),
-  host: envVarsValues.HOST,
+  host: envVarsValues.HOST
 };
 
 export default envVars;
