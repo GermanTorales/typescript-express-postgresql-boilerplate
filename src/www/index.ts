@@ -1,3 +1,4 @@
+/* global NodeJS */ // for eslint to ignore NodeJS.Signals
 import http from 'http';
 import { AddressInfo } from 'net';
 
@@ -26,11 +27,11 @@ class Server {
 
     const signalTraps: NodeJS.Signals[] = ['SIGTERM', 'SIGINT', 'SIGUSR2'];
 
-    signalTraps.forEach((type) => {
+    signalTraps.forEach(type => {
       process.once(type, async () => {
         logger.info(`process.once ${type}`);
 
-        server.close(() => console.log(`Server closed`));
+        server.close(() => logger.warning(`Server closed`));
       });
     });
   }
