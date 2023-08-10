@@ -1,0 +1,49 @@
+{
+  "env": {
+    "es6": true,
+    "node": true,
+    "jest": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "extends": ["eslint:recommended", "prettier", "plugin:prettier/recommended"],
+  "plugins": ["prettier"],
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  },
+  "rules": {
+    /* Code problems */
+    "no-async-promise-executor": ["warn"],
+    "no-await-in-loop": ["error"],
+    "no-compare-neg-zero": ["error"],
+    "no-irregular-whitespace": ["error"],
+    "no-self-compare": ["warn"],
+    "no-this-before-super": ["error"],
+    "no-unexpected-multiline": ["warn"],
+    "no-unused-vars": ["error"],
+    /* Seggestions */
+    "block-scoped-var": ["error"],
+    "curly": ["warn"],
+    "eqeqeq": ["error"],
+    "no-console": ["error"],
+    "no-eq-null": ["warn"],
+    "no-magic-numbers": ["off"],
+    "no-useless-return": ["warn"],
+    "no-var": ["error"],
+    "no-undef": ["error"],
+    "func-names": ["off"],
+    "no-underscore-dangle": ["off"],
+    "consistent-return": ["off"],
+    /* Layout and Formatting rules */
+    "array-bracket-spacing": ["warn"],
+    "max-len": ["error", { "code": 135 }],
+    "no-extra-parens": ["warn", "all"],
+    "no-multi-spaces": ["warn"],
+    "no-multiple-empty-lines": ["warn"],
+    "no-trailing-spaces": ["warn"],
+    /* Others */
+    "jest/expect-expect": ["off"],
+    "security/detect-object-injection": ["off"],
+    "@typescript-eslint/no-this-alias": ["off"]
+  }
+}
