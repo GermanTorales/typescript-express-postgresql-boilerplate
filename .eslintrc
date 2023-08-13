@@ -23,7 +23,7 @@
     "no-unused-vars": ["error"],
     /* Seggestions */
     "block-scoped-var": ["error"],
-    "curly": ["warn"],
+    "curly": ["warn", "multi-line"],
     "eqeqeq": ["error"],
     "no-console": ["error"],
     "no-eq-null": ["warn"],
@@ -35,6 +35,7 @@
     "no-underscore-dangle": ["off"],
     "consistent-return": ["off"],
     /* Layout and Formatting rules */
+    "arrow-body-style": ["off"],
     "array-bracket-spacing": ["warn"],
     "max-len": ["error", { "code": 135 }],
     "no-extra-parens": ["warn", "all"],

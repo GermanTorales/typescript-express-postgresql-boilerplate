@@ -1,9 +1,9 @@
 import express from 'express';
-import cors from 'cors';
 import helmet from 'helmet';
 
-import { envVars, morgan } from 'configurations';
+import { envVars, morgan, typeormConnection, logger, corsConfig } from 'configurations';
 import Routes from 'routes';
+import { errorHandler } from 'middlewares';
 
 export default class App {
   public express: express.Application;
@@ -12,8 +12,11 @@ export default class App {
   constructor() {
     this.express = express();
     this.environment = envVars.env;
+  }
 
+  async bootstrap() {
     this.middlewares();
+    await this.database();
     this.routes();
   }
 
@@ -24,7 +27,7 @@ export default class App {
     }
 
     this.express.use(helmet());
-    this.express.use(cors());
+    this.express.use(corsConfig());
     this.express.use(express.urlencoded({ extended: true }));
     this.express.use(express.json());
     this.express.disable('x-powered-by');
@@ -32,6 +35,15 @@ export default class App {
 
   routes() {
     const routes = new Routes();
-    this.express.use('/api', routes.express);
+
+    this.express.use('/api', routes.setRoutes());
+
+    this.express.use(errorHandler);
+  }
+
+  async database() {
+    await typeormConnection.initialize();
+
+    logger.info('Database connected');
   }
 }

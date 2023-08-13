@@ -1,4 +1,5 @@
 /* global NodeJS */ // for eslint to ignore NodeJS.Signals
+import 'reflect-metadata';
 import http from 'http';
 import { AddressInfo } from 'net';
 
@@ -18,11 +19,12 @@ class Server {
     this.bootstrap();
   }
 
-  bootstrap() {
+  async bootstrap() {
+    await this.application.bootstrap();
     const server = http.createServer(this.application.express).listen({ port: this.port, host: this.host }, () => {
       const addressInfo = server.address() as AddressInfo;
 
-      logger.info(`Server ready at http://${addressInfo.address}:${addressInfo.port}`);
+      logger.info(`Server ready at port http://${addressInfo.address}:${addressInfo.port}`);
     });
 
     const signalTraps: NodeJS.Signals[] = ['SIGTERM', 'SIGINT', 'SIGUSR2'];
@@ -31,7 +33,7 @@ class Server {
       process.once(type, async () => {
         logger.info(`process.once ${type}`);
 
-        server.close(() => logger.warning(`Server closed`));
+        server.close(() => logger.warn(`Server closed`));
       });
     });
   }

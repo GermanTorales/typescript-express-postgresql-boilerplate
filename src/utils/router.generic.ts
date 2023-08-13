@@ -9,6 +9,6 @@ export class GenericRouter {
   }
 
   log(name: string): void {
-    logger.info(`Load -> ${name}`);
+    logger.info(`Load | ${name}`);
   }
 }
