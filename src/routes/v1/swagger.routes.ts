@@ -1,3 +1,4 @@
+import autobind from 'autobind-decorator';
 import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 
@@ -12,6 +13,7 @@ export default class SwaggerRoutes extends GenericRouter {
     this.log(SwaggerRoutes.name);
   }
 
+  @autobind
   routes() {
     const swaggerSpecs = swaggerJsdoc({
       definition: swaggerConfig,
