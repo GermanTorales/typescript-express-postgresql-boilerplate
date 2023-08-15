@@ -1,0 +1,58 @@
+tags:
+  name: User
+  description: User entity routes
+
+/users/:
+  get:
+    security:
+      - bearerAuth: []
+    summary: Return a list of users
+    operationId: getAllUsers
+    tags: [User]
+    responses:
+      200:
+        description: Array of users
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/Users'
+        links:
+          GetUserById:
+            operationId: getUserById
+            parameters:
+              id: '$response.body#/data/0/id'
+            description: The `id`value returned in the response can be used as the `id` parameter in `GET /users/{id}`
+      401:
+        $ref: '#/components/responses/Unauthorized'
+
+/users/{id}:
+  get:
+    security:
+      - bearerAuth: []
+    summary: Return a user by id
+    operationId: getUserById
+    tags: [User]
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: String ID of the user to get
+    responses:
+      200:
+        description: User found by ID
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/User'
+      401:
+        $ref: '#/components/responses/Unauthorized'
+      404:
+        $ref: '#/components/responses/NotFound'

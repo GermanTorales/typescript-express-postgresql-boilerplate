@@ -5,11 +5,11 @@ import logger from './logger.config';
 
 morgan.token('message', (_req: Request, res: Response) => res.locals['errorMessage'] || '');
 
-const successResponseFormat = `:method :url :status - :response-time ms`;
-const errorResponseFormat = `:method :url :status - :response-time ms - message: :message`;
+const successResponseFormat = `:status | :method | :url | :response-time ms`;
+const errorResponseFormat = `:status | :method | :url | :response-time ms | :message`;
 
 const successHandler = morgan(successResponseFormat, {
-  skip: (_req: Request, res: Response) => res.statusCode >= 400,
+  skip: (req: Request, res: Response) => res.statusCode >= 400 || req.url.includes('swagger'),
   stream: { write: (message: string) => logger.info(message.trim()) }
 });
 

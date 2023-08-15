@@ -15,6 +15,7 @@ export class UserRoutes extends GenericRouter {
 
   setRoutes() {
     this.express.get('/', auth, this.userController.handleGetAll);
+    this.express.get('/:id', auth, this.userController.handleGetById);
 
     return this.express;
   }
