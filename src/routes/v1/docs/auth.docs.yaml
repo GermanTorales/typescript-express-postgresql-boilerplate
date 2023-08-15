@@ -1,0 +1,76 @@
+tags:
+  name: Auth
+  description: Auth routes
+
+/auth/local/register:
+  post:
+    summary: Register a new user by email and password
+    tags: [Auth]
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - email
+              - password
+            properties:
+              email:
+                type: string
+                format: email
+                description: must be unique
+              password:
+                type: string
+                format: password
+            example:
+              email: user@email.com
+              password: '12345'
+    responses:
+      201:
+        description: New user Register
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#components/schemas/User'
+      400:
+        $ref: '#/components/responses/DuplicateEmail'
+
+/auth/local/login:
+  post:
+    summary: Login by email and password
+    tags: [Auth]
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - email
+              - password
+            properties:
+              email:
+                type: string
+                format: email
+              password:
+                type: string
+                format: password
+            example:
+              email: user@email.com
+              password: '12345'
+    responses:
+      200:
+        description: Loging success
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/Login'
+      400:
+        $ref: '#/components/responses/InvalidCredentials'

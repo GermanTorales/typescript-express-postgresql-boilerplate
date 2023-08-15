@@ -1,7 +1,7 @@
 import { AuthController } from 'controllers';
 import { GenericRouter } from 'utils';
 
-export default class AuthRoutes extends GenericRouter {
+export class AuthRoutes extends GenericRouter {
   private authController: AuthController;
 
   constructor() {
@@ -11,7 +11,6 @@ export default class AuthRoutes extends GenericRouter {
 
     this.authController = new AuthController();
   }
-
   setRoutes() {
     this.express.post('/local/register', this.authController.handleRegister);
     this.express.post('/local/login', this.authController.handleLogin);

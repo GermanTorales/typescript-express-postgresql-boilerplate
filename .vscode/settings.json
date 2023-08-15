@@ -1,4 +1,16 @@
 {
   "editor.codeActionsOnSave": { "source.fixAll": true },
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "server": "34.132.191.148",
+      "port": 5432,
+      "driver": "PostgreSQL",
+      "name": "CCU-DEV",
+      "database": "ccu-encuestas",
+      "username": "ccu-user",
+      "password": "Ccu.Adm.01,.-"
+    }
+  ]
 }

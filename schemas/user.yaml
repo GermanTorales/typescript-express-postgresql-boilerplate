@@ -1,0 +1,33 @@
+components:
+  schemas:
+    Users:
+      type: array
+      items:
+        $ref: '#/components/schemas/User'
+
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+          format: email
+        username:
+          type: string
+      example:
+        id: 5ebac534954b54139806c112
+        email: fake@example.com
+        username: fake20231212
+
+  responses:
+    DuplicateEmail:
+      description: Email already registered
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            status: 400
+            message: Email already registered
+            date: '2023-08-14T13:11:10.061Z'

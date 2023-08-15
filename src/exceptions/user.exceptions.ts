@@ -8,3 +8,11 @@ export class NotFoundError extends BaseHttpError {
     Object.setPrototypeOf(this, NotFoundError.prototype);
   }
 }
+
+export class EmailAlreadyExistError extends BaseHttpError {
+  constructor(message: string) {
+    super(message, httpStatus.BAD_REQUEST);
+
+    Object.setPrototypeOf(this, EmailAlreadyExistError.prototype);
+  }
+}

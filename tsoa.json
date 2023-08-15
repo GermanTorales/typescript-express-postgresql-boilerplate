@@ -1,8 +1,14 @@
 {
   "entryFile": "src/www/index.ts",
   "noImplicitAdditionalProperties": "throw-on-extras",
+  "controllerPathGlobs": [
+    "src/**/*.controllers.ts"
+  ],
   "spec": {
-    "outputDirectory": "public",
+    "outputDirectory": "dist",
     "specVersion": 3
+  },
+  "routes": {
+    "routesDir": "dist"
   }
 }

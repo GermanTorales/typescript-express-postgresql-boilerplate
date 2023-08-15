@@ -1,12 +1,11 @@
 /* Dependencies imports */
-import { plainToInstance } from 'class-transformer';
 
 /* Internal modules imports */
 import { RegisterUserDto } from 'dtos';
 import { UserRepository } from 'repositories';
 import { bcryptConfig } from 'configurations';
 import { User } from 'entities';
-import { NotFoundError } from 'exceptions';
+import { EmailAlreadyExistError, NotFoundError } from 'exceptions';
 
 export class UserService {
   private userRepository: UserRepository;
@@ -16,6 +15,10 @@ export class UserService {
   }
 
   async create(userData: RegisterUserDto): Promise<User> {
+    const existEmail = await this.userRepository.findOne({ email: userData.email });
+
+    if (existEmail) throw new EmailAlreadyExistError('Email already register.');
+
     const [emailUser] = userData.email.split('@');
     const username = `${emailUser}_${new Date().getTime()}`;
 
@@ -34,6 +37,14 @@ export class UserService {
   }
 
   async getUsers(): Promise<User[]> {
-    return plainToInstance(User, await this.userRepository.find());
+    return await this.userRepository.find();
+  }
+
+  async getUserById(id: string): Promise<User> {
+    const user: User | null = await this.userRepository.findOne({ id });
+
+    if (!user) throw new NotFoundError('User not found.');
+
+    return user;
   }
 }

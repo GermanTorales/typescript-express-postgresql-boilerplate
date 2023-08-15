@@ -37,13 +37,18 @@ export default class App {
     const routes = new Routes();
 
     this.express.use('/api', routes.setRoutes());
-
     this.express.use(errorHandler);
   }
 
   async database() {
-    await typeormConnection.initialize();
+    try {
+      await typeormConnection.initialize();
 
-    logger.info('Database connected');
+      logger.info('Database connected');
+    } catch (error) {
+      logger.error('Database connection error: ', error);
+
+      process.exit(1);
+    }
   }
 }

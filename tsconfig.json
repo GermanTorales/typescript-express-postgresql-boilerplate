@@ -1,35 +1,48 @@
 {
   "compilerOptions": {
-    "pretty": true,
+    /* Basic options */
     "target": "es2020",
     "module": "CommonJS",
-    "rootDir": "./src",
-    "moduleResolution": "node",
-    "sourceMap": true,
     "outDir": "./dist",
-    "removeComments": true,
-    "importsNotUsedAsValues": "remove",
-    "isolatedModules": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
+
+    /* Strict Type-checking options */
     "strict": true,
     "noImplicitAny": true,
-    "strictNullChecks": true,
     "strictFunctionTypes": true,
-    "strictBindCallApply": true,
+    "strictNullChecks": true,
     "strictPropertyInitialization": false,
     "noImplicitThis": true,
     "alwaysStrict": true,
+
+    /* Additional checks */
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "skipLibCheck": true,
+
+    /* Module resolution options */
+    "moduleResolution": "node",
+    "baseUrl": "src",
+    "esModuleInterop": true,
+
+    /* Experimental options */
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
+
+    /* Advanced options */
+    "forceConsistentCasingInFileNames": true,
+
+    /* Others */
+    "pretty": true,
+    "rootDir": "./src",
+    "sourceMap": true,
+    "removeComments": true,
+    "importsNotUsedAsValues": "remove",
+    "isolatedModules": true,
+    "allowSyntheticDefaultImports": true,
+    "strictBindCallApply": true,
+    "skipLibCheck": true,
     "resolveJsonModule": true,
-    "baseUrl": "src",
     "paths": {
       "configurations/*": ["./src/configurations/*"],
       "controllers/*": ["./src/controllers/*"],

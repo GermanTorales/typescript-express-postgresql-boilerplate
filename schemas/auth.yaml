@@ -1,0 +1,58 @@
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    Login:
+      type: object
+      properties:
+        access_token:
+          type: string
+
+    Error:
+      type: object
+      properties:
+        status:
+          type: number
+        message:
+          type: string
+        date:
+          type: string
+          format: date-time
+
+  responses:
+    InvalidCredentials:
+      description: Invalid credentials
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            status: 400
+            message: Invalid credentials
+            date: '2023-08-14T13:11:10.061Z'
+
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            status: 401
+            message: Please authenticate
+            date: '2023-08-14T13:11:10.061Z'
+
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            status: 404
+            message: Not found
+            date: '2023-08-14T13:11:10.061Z'
